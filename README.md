@@ -79,12 +79,12 @@ ai_model.add(layers.Dense(10,activation='softmax'))
 ```
 ### METRICS
 ```
-metrics = pd.DataFrame(model.history.history)
+metrics = pd.DataFrame(ai_model.history.history)
 metrics.head()
 metrics[['loss','val_loss']].plot()
 metrics[['accuracy','val_accuracy']].plot()
 
-x_test_predictions = np.argmax(model.predict(X_test_scaled), axis=1)
+x_test_predictions = np.argmax(ai_model.predict(X_test_scaled), axis=1)
 print(confusion_matrix(y_test,x_test_predictions))
 print(classification_report(y_test,x_test_predictions))
 ```
@@ -101,7 +101,7 @@ img_28_gray = tf.image.rgb_to_grayscale(img_28)
 img_28_gray_scaled = img_28_gray.numpy()/255.0
 
 x_single_prediction = np.argmax(
-    model.predict(img_28_gray_scaled.reshape(1,28,28,1)),
+    ai_model.predict(img_28_gray_scaled.reshape(1,28,28,1)),
      axis=1)
 
 
@@ -113,7 +113,7 @@ img_28_gray_inverted = 255.0-img_28_gray
 img_28_gray_inverted_scaled = img_28_gray_inverted.numpy()/255.0
 
 x_single_prediction = np.argmax(
-    model.predict(img_28_gray_inverted_scaled.reshape(1,28,28,1)),
+    ai_model.predict(img_28_gray_inverted_scaled.reshape(1,28,28,1)),
      axis=1)
 
 print(x_single_prediction)
